@@ -1,3 +1,13 @@
+bakery-play
+===========
+
+Bakery Play is a demonstration of ember techniques in a playful sandbox using the ember starter kit.
+
+Bakery Play has an inventory of 'Yummy Time' bakery with goodies that are sorted by name and are searchable.
+
+
+
+
 starter-kit
 ===========
 
