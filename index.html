@@ -24,7 +24,7 @@ At {{#link-to 'goodies' name}}"{{name}}" {{/link-to}}
   <script type="text/x-handlebars" id="goodies">
     You see the following goodies:
     <ul>
-    {{#each item in model}}
+    {{#each item in searchResults}}
       <li>{{item.name}}</li>
     {{/each}}
     </ul>
