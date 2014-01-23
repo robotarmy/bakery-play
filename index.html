@@ -16,6 +16,7 @@
   <script type="text/x-handlebars" id="bakery">
 At {{#link-to 'goodies' name}}"{{name}}" {{/link-to}}
     <br/>
+    {{input type='text' value=searchText}}
     <!-- outlet is where goodies will appear (render) -->
     {{outlet}}
   </script>

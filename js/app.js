@@ -20,3 +20,13 @@ App.GoodiesRoute = Ember.Route.extend({
     return [{name:'Eclair'},{name:'Donut'},{name:'Oatmeal Cookie'}];
   }
 });
+
+App.BakeryController = Ember.ObjectController.extend({
+})
+
+App.GoodiesController = Ember.ArrayController.extend({
+  needs: "bakery",
+  searchFilter: function() {
+    Ember.Logger.debug("someone is looking for " + this.get("controllers.bakery.searchText"))
+  }.observes("controllers.bakery.searchText")
+})
