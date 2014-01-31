@@ -7,7 +7,7 @@ App.Router.map(function() {
   this.resource('bakery', {path:'/'}, function() {
     this.resource('goodies',{path:':bakery_name'})
   })
-
+  this.route('oauth', {path:'/oauth/callback'})
 });
 
 App.BakeryRoute = Ember.Route.extend({
