@@ -1,9 +1,13 @@
 App = Ember.Application.create();
+App.Router.reopen({
+  location: 'history'
+});
 
 App.Router.map(function() {
   this.resource('bakery', {path:'/'}, function() {
     this.resource('goodies',{path:':bakery_name'})
   })
+
 });
 
 App.BakeryRoute = Ember.Route.extend({
