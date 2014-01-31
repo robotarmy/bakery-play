@@ -10,6 +10,15 @@ App.Router.map(function() {
   this.route('oauth', {path:'/oauth/callback'})
 });
 
+
+App.OauthRoute = Ember.Route.extend({
+  beforeModel:function(){
+    var hash = window.location.hash;
+    window.opener.App.oauth.onRedirect(hash);
+    window.close();
+  }
+});
+
 App.BakeryRoute = Ember.Route.extend({
   model: function() {
     return {name:'Yummy Land'};
@@ -24,6 +33,18 @@ App.GoodiesRoute = Ember.Route.extend({
     return [{name:'Eclair'},{name:'Donut'},{name:'Oatmeal Cookie'}];
   }
 });
+
+
+App.ApplicationController = Ember.Controller.extend({
+
+  actions: {
+    authorize: function() {
+      App.oauth = Ember.OAuth2.create({providerId: 'google'});
+      App.oauth.authorize();
+    }
+  }
+});
+
 
 App.BakeryController = Ember.ObjectController.extend({
 })

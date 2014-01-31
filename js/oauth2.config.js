@@ -6,3 +6,6 @@
       scope: 'public write'
     } 
   } 
+
+  Ember.OAuth2.reopen({ onSuccess: function(data) { console.log("onsuccess  "+data) } });
+  Ember.OAuth2.reopen({ onError: function(data) {console.log("-----  onerror    "+ data) } });
