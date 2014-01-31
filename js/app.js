@@ -1,4 +1,6 @@
+document.domain = 'bakery-play.herokuapp.com'
 App = Ember.Application.create();
+
 App.oauth = Ember.OAuth2.create({providerId: 'google'});
 
 App.Router.reopen({
