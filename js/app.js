@@ -1,4 +1,6 @@
 App = Ember.Application.create();
+App.oauth = Ember.OAuth2.create({providerId: 'google'});
+
 App.Router.reopen({
   location: 'history'
 });
@@ -8,11 +10,14 @@ App.Router.map(function() {
   this.resource('bakery', {path:'/bakery'}, function() {
     this.resource('goodies',{path:':bakery_name'})
   })
-  this.route('oauth', {path:'/oauth/callback'})
+  this.route('oauth_callback', {path:'/oauth-callback'})
 });
 
 
-App.OauthRoute = Ember.Route.extend({
+App.OauthCallbackRoute = Ember.Route.extend({
+  model: function() {
+    return {}
+  },
   beforeModel:function(){
     var hash = window.location.hash;
     window.opener.App.oauth.onRedirect(hash);
@@ -40,7 +45,6 @@ App.ApplicationController = Ember.Controller.extend({
 
   actions: {
     authorize: function() {
-      App.oauth = Ember.OAuth2.create({providerId: 'google'});
       App.oauth.authorize();
     }
   }
