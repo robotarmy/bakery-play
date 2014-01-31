@@ -4,7 +4,8 @@ App.Router.reopen({
 });
 
 App.Router.map(function() {
-  this.resource('bakery', {path:'/'}, function() {
+
+  this.resource('bakery', {path:'/bakery'}, function() {
     this.resource('goodies',{path:':bakery_name'})
   })
   this.route('oauth', {path:'/oauth/callback'})
