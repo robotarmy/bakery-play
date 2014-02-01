@@ -37521,7 +37521,7 @@ Ember.HistoryLocation = Ember.Object.extend({
 
     rootURL = rootURL.replace(/\/$/, '');
     var url = path.replace(rootURL, '');
-    url = url + location.hash;
+    url = url + ? + location.hash.slice(1) # query params
     
     return url;
   },
