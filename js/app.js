@@ -1,4 +1,8 @@
-document.domain = 'bakery-play.herokuapp.com'
+$( document ).ajaxError(function( event, request, settings ) {
+  console.log("Error requesting page s(" + settings + ") r("+request+")" );
+});
+
+
 App = Ember.Application.create();
 
 App.oauth = Ember.OAuth2.create({providerId: 'google'});
