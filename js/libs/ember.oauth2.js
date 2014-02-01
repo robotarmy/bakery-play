@@ -57,7 +57,7 @@
           console.log(data)
         })
         /*var dialog = window.open(authorizeUri, 'Authorize', 'height=600, width=450');*/
-        if (window.focus) dialog.focus();
+        //if (window.focus) dialog.focus();
       },
 
       authSuccess: function(params) {
