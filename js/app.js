@@ -1,3 +1,6 @@
+HackHash = window.location.hash
+
+
 $( document ).ajaxError(function( event, request, settings ) {
   console.log("Error requesting page s(" + JSON.stringify(settings) + ") r("+JSON.stringify(request)+")" );
 });
@@ -25,7 +28,7 @@ App.OauthCallbackRoute = Ember.Route.extend({
     return {}
   },
   beforeModel:function(){
-    var hash = window.location.hash;
+    var hash = HackHash
     App.oauth.onRedirect(hash);
     this.transitionTo("bakery")
   }
