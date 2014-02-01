@@ -37,6 +37,7 @@
         uri += '?response_type=token' + 
             '&redirect_uri=' + encodeURIComponent(this.redirectUri) +
             '&client_id=' + encodeURIComponent(this.clientId) +
+            '&approval_prompt=' + 'force' +
             '&state=' + encodeURIComponent(this.state);
         if (this.scope) uri += '&scope=' + encodeURIComponent(this.scope).replace('%20', '+');
         return uri;
