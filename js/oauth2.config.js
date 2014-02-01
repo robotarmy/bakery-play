@@ -7,5 +7,5 @@
     } 
   } 
 
-  Ember.OAuth2.reopen({ onSuccess: function(data) { console.log("onsuccess  "+data) } });
-  Ember.OAuth2.reopen({ onError: function(data) {console.log("-----  onerror    "+ data) } });
+  Ember.OAuth2.reopen({ onSuccess: function(data) { console.log("onsuccess  "+ JSON.stringify(data)) } });
+  Ember.OAuth2.reopen({ onError: function(data) {console.log("-----  onerror    "+  JSON.stringify(data)) } });
