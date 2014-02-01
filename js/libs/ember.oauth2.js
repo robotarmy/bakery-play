@@ -53,9 +53,7 @@
         var authorizeUri = this.authUri();
         this.clearStates();
         this.saveState(this.state, this.requestObj());
-        $.get(authorizeUri,function(data) {
-          console.log(data)
-        })
+        parent.window.location.href(authorizeUri);
         /*var dialog = window.open(authorizeUri, 'Authorize', 'height=600, width=450');*/
         //if (window.focus) dialog.focus();
       },
