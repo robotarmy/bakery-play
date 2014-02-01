@@ -1,5 +1,5 @@
 $( document ).ajaxError(function( event, request, settings ) {
-  console.log("Error requesting page s(" + JSON.stringify(settings); + ") r("+JSON.stringify(request);+")" );
+  console.log("Error requesting page s(" + JSON.stringify(settings) + ") r("+JSON.stringify(request)+")" );
 });
 
 
