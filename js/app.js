@@ -26,8 +26,8 @@ App.OauthCallbackRoute = Ember.Route.extend({
   },
   beforeModel:function(){
     var hash = window.location.hash;
-    window.opener.App.oauth.onRedirect(hash);
-    window.close();
+    App.oauth.onRedirect(hash);
+    this.transitionTo("bakery")
   }
 });
 
