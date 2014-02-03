@@ -94,12 +94,11 @@
           var stateObj = this.getState(params.state);
           this.checkState(stateObj);
           this.saveToken(this.generateToken(params));
-          this.onSuccess(stateObj);
+          this.validateToken(stateObj)
         } else {
           this.onError(params);
         }
-        // this should be part of onScuucess/onError once it's working
-        this.validateToken()
+        // triggers onSuccess or onError
 
         if (callback && typeof(callback) === "function") {
           callback();
@@ -200,13 +199,26 @@
         this.saveToken(token);
       },
 
-      onSuccess: function(params) {},
-      onError: function() {},
-
-      validateToken: function() {
+      onSuccess: function(stateObj) {},
+      onError: function(params) {},
+      onValidationError: function(stateObj) {
+        console.log('unable to validate with access_token.. stateObj:')
+        console.log(stateObj)
+      },
+      getTokenInfo: function() {
+        this.tokenInfo
+      },
+      validateToken: function(stateObj,params) {
+        var that = this
         // Avoid confused depudy problem by validating token
-        $.get("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=1/fFBGRNJru1FQd44AzqT3Zg ",function(data) {
-          console.log(data)
+        $.get("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+this.getAccessToken(),function(data) {
+          if (data.user_id) {
+            that.tokenInfo =  data
+            this.onSuccess(stateObj)
+          }
+          else {
+            this.onValidationError(stateObj);
+          }
         })
       },
     });
