@@ -1,4 +1,4 @@
-HackHash = window.location.hash
+HackHashSoEmberHistoryLocationDoesntClearIt = window.location.hash
 
 
 $( document ).ajaxError(function( event, request, settings ) {
@@ -12,6 +12,16 @@ App.oauth = Ember.OAuth2.create({providerId: 'google'});
 
 App.Router.reopen({
   location: 'history'
+});
+
+
+App.GooglePerson = Ember.Object.extend({
+  authenticated? : function() {
+    var access_token =  App.oauth.getAccessToken()
+    if (access_token && !App.oauth.accessTokenIsExpired()) {
+      return true
+    }
+  },
 });
 
 App.Router.map(function() {
@@ -28,7 +38,7 @@ App.OauthCallbackRoute = Ember.Route.extend({
     return {}
   },
   beforeModel:function(){
-    var hash = HackHash
+    var hash = HackHashSoEmberHistoryLocationDoesntClearIt
     App.oauth.onRedirect(hash);
     this.transitionTo("bakery")
   }
@@ -72,8 +82,8 @@ App.GoodiesController = Ember.ArrayController.extend({
 
 
   filterItem: function (model) {
-    searchInput = this.get('controllers.bakery.searchText')
-    regexp = new RegExp(searchInput, "i");
+    var searchInput = this.get('controllers.bakery.searchText')
+    var regexp = new RegExp(searchInput, "i");
     if(!searchInput || (searchInput && (0 == searchInput.length))) {
       return true
     } else if (-1 != model.name.search(regexp)) {
@@ -84,7 +94,7 @@ App.GoodiesController = Ember.ArrayController.extend({
   },
 
   searchFilter: function() {
-    searchInput = this.get('controllers.bakery.searchText')
+    var searchInput = this.get('controllers.bakery.searchText')
     Ember.Logger.debug("someone is looking for " + this.get("controllers.bakery.searchText"))
     this.set('searchResults',this.get('arrangedContent').filter(this.filterItem.bind(this)))
   }.observes("controllers.bakery.searchText"),
