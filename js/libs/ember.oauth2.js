@@ -211,13 +211,13 @@
       validateToken: function(stateObj,params) {
         var that = this
         // Avoid confused depudy problem by validating token
-        $.get("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+this.getAccessToken(),function(data) {
+        $.get("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token="+that.getAccessToken(),function(data) {
           if (data.user_id) {
             that.tokenInfo =  data
-            this.onSuccess(stateObj)
+            that.onSuccess(stateObj)
           }
           else {
-            this.onValidationError(stateObj);
+            that.onValidationError(stateObj);
           }
         })
       },
