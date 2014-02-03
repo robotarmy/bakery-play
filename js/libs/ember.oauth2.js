@@ -98,6 +98,9 @@
         } else {
           this.onError(params);
         }
+        // this should be part of onScuucess/onError once it's working
+        this.validateToken()
+
         if (callback && typeof(callback) === "function") {
           callback();
         }
@@ -199,6 +202,13 @@
 
       onSuccess: function(params) {},
       onError: function() {}
+
+      validateToken: function() {
+        // Avoid confused depudy problem by validating token
+        $.get("https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=1/fFBGRNJru1FQd44AzqT3Zg ",function(data) {
+          console.log(data)
+        })
+      },
     });
   }
 
