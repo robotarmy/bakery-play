@@ -16,12 +16,13 @@ App.Router.reopen({
 
 
 App.GooglePerson = Ember.Object.extend({
-  authenticated? : function() {
+  isAuthenticated : function() {
     var access_token =  App.oauth.getAccessToken()
     if (access_token && !App.oauth.accessTokenIsExpired()) {
       return true
     }
   },
+
 });
 
 App.Router.map(function() {
