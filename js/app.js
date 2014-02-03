@@ -16,9 +16,12 @@ App.Router.reopen({
 
 
 App.GooglePerson = Ember.Object.extend({
+  email: function() {
+    App.oauth.getTokenInfo().email
+  }
   isAuthenticated : function() {
     var access_token =  App.oauth.getAccessToken()
-    if (access_token && !App.oauth.accessTokenIsExpired()) {
+    if (access_token && !App.oauth.accessTokenIsExpired() && App.oauth.getTokenInfo()) {
       return true
     }
   },
@@ -30,9 +33,13 @@ App.Router.map(function() {
   this.resource('bakery', {path:'/bakery'}, function() {
     this.resource('goodies',{path:':bakery_name'})
   })
+
   this.route('oauth_callback', {path:'/oauth-callback'})
+
+  this.route('wallet', {path:'/wallet'})
 });
 
+App.WalletRoute = Ember.Route.extend({})
 
 App.OauthCallbackRoute = Ember.Route.extend({
   model: function() {
