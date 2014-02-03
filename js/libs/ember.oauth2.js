@@ -201,7 +201,7 @@
       },
 
       onSuccess: function(params) {},
-      onError: function() {}
+      onError: function() {},
 
       validateToken: function() {
         // Avoid confused depudy problem by validating token
